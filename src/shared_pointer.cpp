@@ -9,6 +9,14 @@
 /**
  *
  */
+void Example::set() {
+
+    pointer = shared_from_this();
+}
+
+/**
+ *
+ */
 std::shared_ptr<int> createSharedPointer(const int& value) {
     return std::make_shared<int>(value);
 }

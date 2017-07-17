@@ -39,5 +39,10 @@ int main() {
     auto firstSharedPtr = createSharedPointer(FIRST_SHARED_PTR_VALUE);
     receiveSharedPointer(firstSharedPtr);
 
+    /* shared pointer on `this` */
+
+    auto pointerToObject = std::make_shared<Example>();
+    pointerToObject->set();
+
     return EXIT_SUCCESS;
 }
