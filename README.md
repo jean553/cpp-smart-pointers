@@ -94,3 +94,32 @@ constexpr int FIRST_SHARED_PTR_VALUE {50};
 auto firstSharedPtr = createSharedPointer(FIRST_SHARED_PTR_VALUE);
 receiveSharedPointer(firstSharedPtr);
 ```
+
+## Shared pointers with `std::enable_shared_from_this`
+
+```cpp
+class Example : public std::enable_shared_from_this<Example> {
+
+public:
+
+    /**
+     * @brief sets the pointer to point to the current object
+     */
+    void set();
+
+private:
+
+    std::shared_ptr<Example> pointer {nullptr};
+};
+
+/**
+ *
+ */
+void Example::set() {
+
+    pointer = shared_from_this();
+}
+
+auto pointerToObject = std::make_shared<Example>();
+pointerToObject->set();
+```
