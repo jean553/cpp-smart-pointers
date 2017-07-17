@@ -4,6 +4,20 @@
 
 #include <memory>
 
+class Example : public std::enable_shared_from_this<Example> {
+
+public:
+
+    /**
+     * @brief sets the pointer to point to the current object
+     */
+    void set();
+
+private:
+
+    std::shared_ptr<Example> pointer {nullptr};
+};
+
 /**
  * @brief creates a shared pointer
  *
