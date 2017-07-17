@@ -50,3 +50,27 @@ void receiveUniquePointer(std::unique_ptr<int> pointer) {
 auto pointer = createUniquePointer(10);
 receiveUniquePointer(std::move(pointer));
 ```
+
+## Unique pointers with custom deleters
+
+It is possible to specify what happens when an unique pointer is deleted.
+To do so, we have to use custom deleters. A custom deleter can be a function
+or a lambda function.
+
+```cpp
+void customDeleter(int* pointer) {
+    delete pointer;
+    std::cout << "other pointer deleted !" << std::endl;
+}
+
+auto deleter = [](int* pointer) {
+    delete pointer;
+    std::cout << "pointer deleted !" << std::endl;
+};
+
+std::unique_ptr<int, decltype(deleter)> pointer(new int(10), deleter);
+std::cout << *pointer << std::endl;
+
+std::unique_ptr<int, void (*)(int*)> otherPointer(new int(100), customDeleter);
+std::cout << *otherPointer << std::endl;
+```
