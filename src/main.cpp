@@ -44,5 +44,14 @@ int main() {
     auto pointerToObject = std::make_shared<Example>();
     pointerToObject->set();
 
+    /* weak pointer */
+
+    auto firstPtr = std::make_shared<Example>(); // shared_ptr
+    std::weak_ptr<Example> secondPtr(firstPtr);
+
+    if (not secondPtr.expired()) {
+        auto thirdPtr = secondPtr.lock(); // shared_ptr
+    }
+
     return EXIT_SUCCESS;
 }

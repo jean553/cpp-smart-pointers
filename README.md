@@ -123,3 +123,23 @@ void Example::set() {
 auto pointerToObject = std::make_shared<Example>();
 pointerToObject->set();
 ```
+
+## Weak pointers
+
+`std::weak_ptr` can be dangling pointers.
+They are used with shared pointers.
+It is not possible to dereference a weak pointer.
+
+They are used with cache systems and with entities that point to each other.
+
+It is possible to check if a weak pointer is dangling through `expired()` method.
+It is possible to create a shared pointer from a weak pointer using `lock()`.
+
+```cpp
+auto firstPtr = std::make_shared<Example>(); // shared_ptr
+std::weak_ptr<Example> secondPtr(firstPtr);
+
+if (not secondPtr.expired()) {
+    auto thirdPtr = secondPtr.lock(); // shared_ptr
+}
+```
