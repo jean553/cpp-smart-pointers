@@ -2,6 +2,22 @@
 
 Smart pointers usage examples.
 
+## Run examples
+
+Compilation:
+
+```bash
+mkdir build && cd build/
+cmake ..
+make
+```
+
+Run:
+
+```bash
+./bin/cpp-smart-pointers
+```
+
 ## Unique pointers
 
 Unique pointers must be the priority when using pointers.
