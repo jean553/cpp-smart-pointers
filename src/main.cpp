@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "unique_pointer.hpp"
+#include "shared_pointer.hpp"
 
 void customDeleter(int* pointer) {
     delete pointer;
@@ -31,6 +32,12 @@ int main() {
 
     std::unique_ptr<int, void (*)(int*)> otherPointer(new int(100), customDeleter);
     std::cout << *otherPointer << std::endl;
+
+    /* shared pointer */
+
+    constexpr int FIRST_SHARED_PTR_VALUE {50};
+    auto firstSharedPtr = createSharedPointer(FIRST_SHARED_PTR_VALUE);
+    receiveSharedPointer(firstSharedPtr);
 
     return EXIT_SUCCESS;
 }
