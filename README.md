@@ -74,3 +74,23 @@ std::cout << *pointer << std::endl;
 std::unique_ptr<int, void (*)(int*)> otherPointer(new int(100), customDeleter);
 std::cout << *otherPointer << std::endl;
 ```
+
+## Shared pointers
+
+Shared pointers are pointers that can point to the same resource.
+They also point to a `control block` containing the custom deleter,
+the references counter... etc...
+
+Only one control block should exist per resource, as long as at least
+one shared pointer points to it.
+
+According how the shared pointer is created, it will create a control block or not.
+
+When the shared pointer is copied, the references counter is incremented;
+the references counter is not incremented when the shared pointer is moved.
+
+```cpp
+constexpr int FIRST_SHARED_PTR_VALUE {50};
+auto firstSharedPtr = createSharedPointer(FIRST_SHARED_PTR_VALUE);
+receiveSharedPointer(firstSharedPtr);
+```
